@@ -98,4 +98,20 @@ public class ParkingLotTest {
         assertNull(nullCar);
     }
 
+//    Given in a parking lot and position is not available
+//    When parking a car
+//    Then return nothing
+
+    @Test
+    public void should_return_no_ticket_when_park_given_a_parking_lot_and_no_position_available() {
+        // Given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+
+        // When
+        ParkingTicket parkingTicket = parkingLot.park(car);
+
+        // Then
+        assertNull(parkingTicket);
+    }
 }
