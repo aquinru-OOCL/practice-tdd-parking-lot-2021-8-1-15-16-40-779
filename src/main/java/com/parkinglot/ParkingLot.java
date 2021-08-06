@@ -1,14 +1,19 @@
 package com.parkinglot;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ParkingLot {
-    private Car car;
+    private final Map<ParkingTicket, Car> parkedPosition = new HashMap<>();
 
     public ParkingTicket park(Car car) {
-        this.car = car;
-        return new ParkingTicket();
+        ParkingTicket parkingTicket = new ParkingTicket();
+        parkedPosition.put(parkingTicket, car);
+        return parkingTicket;
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
+        Car car = parkedPosition.get(parkingTicket);
         return car;
     }
 }
