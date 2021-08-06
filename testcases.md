@@ -1,5 +1,5 @@
 # Story 1
-[] Case 1  
+[X] Case 1  
     Given a parking lot and a car  
     When parking a car  
     Then return a parking ticket

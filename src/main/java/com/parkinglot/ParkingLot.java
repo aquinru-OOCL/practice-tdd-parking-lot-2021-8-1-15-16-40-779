@@ -5,7 +5,7 @@ public class ParkingLot {
 
     public ParkingTicket park(Car car) {
         this.car = car;
-        return null;
+        return new ParkingTicket();
     }
 
 }
