@@ -14,7 +14,7 @@
     When fetching two cars  
     Then return the right car with corresponding ticket
 
-[] Case 4  
+[X] Case 4  
     Given in a parking lot and a wrong parking ticket  
     When fetching a car   
     Then return nothing  
