@@ -88,12 +88,14 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
         ParkingTicket parkingTicket = parkingLot.park(car);
+        Car actualCar = parkingLot.fetch(parkingTicket);
+        Car nullCar = new Car();
 
         // When
-        Car actualCar = parkingLot.fetch(parkingTicket);
+        nullCar = parkingLot.fetch(parkingTicket);
 
         // Then
-        assertNull(actualCar);
+        assertNull(nullCar);
     }
 
 }
