@@ -106,10 +106,14 @@ public class ParkingLotTest {
     public void should_return_no_ticket_when_park_given_a_parking_lot_and_no_position_available() {
         // Given
         ParkingLot parkingLot = new ParkingLot();
-        Car car = new Car();
+        for (int i = 0; i < 10; i++) {
+            parkingLot.park(new Car());
+        }
+
+        Car eleventhCar = new Car();
 
         // When
-        ParkingTicket parkingTicket = parkingLot.park(car);
+        ParkingTicket parkingTicket = parkingLot.park(eleventhCar);
 
         // Then
         assertNull(parkingTicket);
