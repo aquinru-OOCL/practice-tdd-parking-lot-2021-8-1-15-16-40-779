@@ -11,7 +11,7 @@
 
 [] Case 3  
     Given a parking lot with two parked cars, and two parking tickets  
-    When fetching both cars  
+    When fetching two cars  
     Then return the right car with corresponding ticket
 
 [] Case 4  
