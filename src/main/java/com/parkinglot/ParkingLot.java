@@ -4,17 +4,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot {
-    private final Map<ParkingTicket, Car> parkedPosition = new HashMap<>();
+    private final Map<ParkingTicket, Car> parkedPositions = new HashMap<>();
 
     public ParkingTicket park(Car car) {
+        if (isParkingLotFull()){
+            //Implement exception handling
+            return null;
+        }
         ParkingTicket parkingTicket = new ParkingTicket();
-        parkedPosition.put(parkingTicket, car);
+        parkedPositions.put(parkingTicket, car);
         return parkingTicket;
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
-        Car car = parkedPosition.get(parkingTicket);
-        parkedPosition.remove(parkingTicket);
+        Car car = parkedPositions.get(parkingTicket);
+        parkedPositions.remove(parkingTicket);
         return car;
+    }
+
+    public Boolean isParkingLotFull() {
+        return parkedPositions.size() >= 10;
     }
 }

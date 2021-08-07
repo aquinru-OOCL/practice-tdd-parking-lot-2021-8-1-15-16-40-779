@@ -24,7 +24,24 @@
     When fetching a car   
     Then return nothing  
 
-[] Case 6  
+[X] Case 6  
     Given in a parking lot and position is not available  
     When parking a car  
-    Then return nothing  
+    Then return nothing 
+
+
+# Story 2
+[] Case 1  
+    Given in a parking lot and a wrong parking ticket  
+    When fetching a car  
+    Then return nothing with error message "Unrecognized parking ticket."  
+
+[] Case 2  
+    Given in a parking lot and a used parking ticket  
+    When fetching a car  
+    Then return nothing with error message "Unrecognized parking ticket."
+
+[] Case 3  
+    Given in a parking lot and position is not available  
+    When parking a car  
+    Then return nothing with error message "No available position."

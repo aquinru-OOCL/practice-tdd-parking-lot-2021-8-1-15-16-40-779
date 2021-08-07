@@ -1,5 +1,6 @@
 package com.parkinglot;
 
+import com.parkinglot.Exceptions.UnrecognizedTicketException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -118,4 +119,5 @@ public class ParkingLotTest {
         // Then
         assertNull(parkingTicket);
     }
+
 }
