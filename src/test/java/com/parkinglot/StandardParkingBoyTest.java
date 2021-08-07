@@ -158,4 +158,25 @@ public class StandardParkingBoyTest {
         assertEquals(1, standardParkingBoy.getParkingLotList().get(1).getCountParkedCars()); //Second parking lot should be 1
 
     }
+
+//    Given a standard parking boy, who manage two parking lots, both with a parked car, and two parking ticket
+//    When fetch the car twice
+//    Then return the right car with each ticket
+    @Test
+    void should_return_the_right_car_when_fetch_car_twice_given_a_standard_parking_boy_and_two_parking_lots_with_both_a_parked_car_and_two_parking_tickets() {
+        // Given
+        Car firstCar = new Car();
+        Car secondCar = new Car();
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(asList(new ParkingLot(), new ParkingLot()));
+        ParkingTicket firstParkingTicket = standardParkingBoy.getParkingLotList().get(0).park(firstCar);
+        ParkingTicket secondParkingTicket = standardParkingBoy.getParkingLotList().get(1).park(secondCar);
+
+        // When
+        Car firstFetchedCar = standardParkingBoy.fetch(firstParkingTicket);
+        Car secondFetchedCar = standardParkingBoy.fetch(secondParkingTicket);
+
+        // Then
+        assertSame(firstCar, firstFetchedCar);
+        assertSame(secondCar, secondFetchedCar);
+    }
 }
