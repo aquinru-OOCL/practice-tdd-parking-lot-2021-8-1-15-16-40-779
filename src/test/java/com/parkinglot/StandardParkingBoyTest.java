@@ -1,11 +1,12 @@
 package com.parkinglot;
 
+import com.parkinglot.Exceptions.UnrecognizedTicketException;
+import com.parkinglot.Process.StandardParking;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StandardParkingBoyTest {
 
@@ -62,5 +63,23 @@ public class StandardParkingBoyTest {
         assertSame(firstCar, firstFetchedCar);
         assertSame(secondCar, secondFetchedCar);
 
+    }
+
+//    Given a parking lot, a standard parking boy, and a wrong parking ticket
+//    When fetch the car
+//    Then return nothing with error message "Unrecognized parking ticket."
+    @Test
+    void should_return_no_car_with_error_message_when_fetch_given_a_parking_lot_and_a_standard_parking_boy_and_a_wrong_parking_ticket() {
+        // Given
+        Car car = new Car();
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(Collections.singletonList(new ParkingLot()));
+        standardParkingBoy.park(car);
+        ParkingTicket unrecognizedParkingTicket = new ParkingTicket();
+
+        // When
+        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> standardParkingBoy.fetch(unrecognizedParkingTicket));
+
+        // Then
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
 }
