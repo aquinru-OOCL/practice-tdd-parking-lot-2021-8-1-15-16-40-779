@@ -29,10 +29,14 @@ public class ParkingLot {
     }
 
     public Boolean isParkingLotFull() {
-        return parkedPositions.size() >= 10;
+        return getCountParkedCars() >= 10;
     }
 
     public Boolean hasInvalidTicket(ParkingTicket parkingTicket) {
         return !parkedPositions.containsKey(parkingTicket);
+    }
+
+    public int getCountParkedCars() {
+        return parkedPositions.size();
     }
 }

@@ -24,4 +24,8 @@ public class StandardParkingBoy {
         return fetching.fetch(parkingTicket, parkingLots);
     }
 
+    public List<ParkingLot> getParkingLotList() {
+        return parkingLots;
+    }
+
 }

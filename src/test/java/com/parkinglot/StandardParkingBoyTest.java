@@ -1,11 +1,10 @@
 package com.parkinglot;
 
+import com.parkinglot.Exceptions.NoAvailablePositionException;
 import com.parkinglot.Exceptions.UnrecognizedTicketException;
-import com.parkinglot.Process.StandardParking;
+import static java.util.Arrays.asList;
 import org.junit.jupiter.api.Test;
-
 import java.util.Collections;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StandardParkingBoyTest {
@@ -99,5 +98,42 @@ public class StandardParkingBoyTest {
 
         // Then
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
+    }
+
+//    Given a parking lot without any position, a standard parking boy, and a car
+//    When park the car
+//    Then return nothing with error message "No available position."
+    @Test
+    void should_return_no_parking_ticket_with_error_message_when_park_given_a_parking_lot_without_any_position_and_a_standard_parking_boy_and_a_car() {
+        // Given
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(Collections.singletonList(new ParkingLot()));
+        for (int i = 0; i < 10; i++) {
+            standardParkingBoy.park(new Car());
+        }
+
+        Car eleventhCar = new Car();
+
+        // When
+        Exception exception = assertThrows(NoAvailablePositionException.class, () -> standardParkingBoy.park(eleventhCar));
+
+        // Then
+        assertEquals("No available position.", exception.getMessage());
+
+    }
+
+//    Given a standard parking boy, who manage two parking lots, both with available position, and a car
+//    When park the car
+//    Then the car will be parked to the first parking lot
+    @Test
+    void should_park_in_first_parking_lot_when_park_given_a_standard_parking_boy_who_manage_two_parking_lots_both_with_available_position() {
+        // Given
+        Car car = new Car();
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(asList(new ParkingLot(), new ParkingLot()));
+
+        // When
+        standardParkingBoy.park(car);
+
+        // Then
+        assertEquals(1, standardParkingBoy.getParkingLotList().get(0).getCountParkedCars());
     }
 }
