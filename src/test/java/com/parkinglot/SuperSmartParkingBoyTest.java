@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 
+import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SuperSmartParkingBoyTest {
@@ -17,10 +18,10 @@ public class SuperSmartParkingBoyTest {
     void should_return_parking_ticket_when_park_given_a_parking_lot_a_smart_parking_boy_and_a_car() {
         // Given
         Car car = new Car();
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Collections.singletonList(new ParkingLot()));
+        SuperSmartParkingBoy superSuperSmartParkingBoy = new SuperSmartParkingBoy(Collections.singletonList(new ParkingLot()));
 
         // When
-        ParkingTicket parkingTicket = smartParkingBoy.park(car);
+        ParkingTicket parkingTicket = superSuperSmartParkingBoy.park(car);
 
         // Then
         assertNotNull(parkingTicket);
@@ -33,11 +34,11 @@ public class SuperSmartParkingBoyTest {
     void should_return_car_when_fetch_given_a_parking_lot_and_a_smart_parking_boy_and_a_parking_ticket() {
         // Given
         Car car = new Car();
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Collections.singletonList(new ParkingLot()));
-        ParkingTicket parkingTicket = smartParkingBoy.park(car);
+        SuperSmartParkingBoy superSuperSmartParkingBoy = new SuperSmartParkingBoy(Collections.singletonList(new ParkingLot()));
+        ParkingTicket parkingTicket = superSuperSmartParkingBoy.park(car);
 
         // When
-        Car actualCar = smartParkingBoy.fetch(parkingTicket);
+        Car actualCar = superSuperSmartParkingBoy.fetch(parkingTicket);
 
         // Then
         assertSame(car, actualCar);
@@ -51,13 +52,13 @@ public class SuperSmartParkingBoyTest {
         // Given
         Car firstCar = new Car();
         Car secondCar = new Car();
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Collections.singletonList(new ParkingLot()));
-        ParkingTicket firstParkingTicket = smartParkingBoy.park(firstCar);
-        ParkingTicket secondParkingTicket = smartParkingBoy.park(secondCar);
+        SuperSmartParkingBoy superSuperSmartParkingBoy = new SuperSmartParkingBoy(Collections.singletonList(new ParkingLot()));
+        ParkingTicket firstParkingTicket = superSuperSmartParkingBoy.park(firstCar);
+        ParkingTicket secondParkingTicket = superSuperSmartParkingBoy.park(secondCar);
 
         // When
-        Car firstFetchedCar = smartParkingBoy.fetch(firstParkingTicket);
-        Car secondFetchedCar = smartParkingBoy.fetch(secondParkingTicket);
+        Car firstFetchedCar = superSuperSmartParkingBoy.fetch(firstParkingTicket);
+        Car secondFetchedCar = superSuperSmartParkingBoy.fetch(secondParkingTicket);
 
         // Then
         assertSame(firstCar, firstFetchedCar);
@@ -72,12 +73,12 @@ public class SuperSmartParkingBoyTest {
     void should_return_no_car_with_error_message_when_fetch_given_a_parking_lot_and_a_smart_parking_boy_and_a_wrong_parking_ticket() {
         // Given
         Car car = new Car();
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Collections.singletonList(new ParkingLot()));
-        smartParkingBoy.park(car);
+        SuperSmartParkingBoy superSuperSmartParkingBoy = new SuperSmartParkingBoy(Collections.singletonList(new ParkingLot()));
+        superSuperSmartParkingBoy.park(car);
         ParkingTicket unrecognizedParkingTicket = new ParkingTicket();
 
         // When
-        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> smartParkingBoy.fetch(unrecognizedParkingTicket));
+        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> superSuperSmartParkingBoy.fetch(unrecognizedParkingTicket));
 
         // Then
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
@@ -90,12 +91,12 @@ public class SuperSmartParkingBoyTest {
     void should_return_no_car_with_error_message_when_fetch_given_a_parking_lot_and_a_smart_parking_boy_and_a_used_parking_ticket() {
         // Given
         Car car = new Car();
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Collections.singletonList(new ParkingLot()));
-        ParkingTicket parkingTicket = smartParkingBoy.park(car);
-        smartParkingBoy.fetch(parkingTicket);
+        SuperSmartParkingBoy superSuperSmartParkingBoy = new SuperSmartParkingBoy(Collections.singletonList(new ParkingLot()));
+        ParkingTicket parkingTicket = superSuperSmartParkingBoy.park(car);
+        superSuperSmartParkingBoy.fetch(parkingTicket);
 
         // When
-        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> smartParkingBoy.fetch(parkingTicket));
+        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> superSuperSmartParkingBoy.fetch(parkingTicket));
 
         // Then
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
@@ -107,15 +108,15 @@ public class SuperSmartParkingBoyTest {
     @Test
     void should_return_no_parking_ticket_with_error_message_when_park_given_a_parking_lot_without_any_position_and_a_smart_parking_boy_and_a_car() {
         // Given
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Collections.singletonList(new ParkingLot()));
+        SuperSmartParkingBoy superSuperSmartParkingBoy = new SuperSmartParkingBoy(Collections.singletonList(new ParkingLot()));
         for (int i = 0; i < 10; i++) {
-            smartParkingBoy.park(new Car());
+            superSuperSmartParkingBoy.park(new Car());
         }
 
         Car eleventhCar = new Car();
 
         // When
-        Exception exception = assertThrows(NoAvailablePositionException.class, () -> smartParkingBoy.park(eleventhCar));
+        Exception exception = assertThrows(NoAvailablePositionException.class, () -> superSuperSmartParkingBoy.park(eleventhCar));
 
         // Then
         assertEquals("No available position.", exception.getMessage());
