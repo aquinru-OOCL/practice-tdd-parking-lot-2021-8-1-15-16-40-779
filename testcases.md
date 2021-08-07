@@ -95,10 +95,10 @@ Given a standard parking boy, who manage two parking lots, both with a parked ca
 When fetch the car twice  
 Then return the right car with each ticket  
 
-[] Case 4  
+[X] Case 4  
 Given a standard parking boy, who manage two parking lots, and an unrecognized ticket,  
 When fetch the car  
-Then return nothing with error message "Unrecognized parking ticket.”  
+Then return nothing with error message "Unrecognized parking ticket."  
 
 [] Case 5  
 Given a standard parking boy, who manage two parking lots, and a used ticket  
