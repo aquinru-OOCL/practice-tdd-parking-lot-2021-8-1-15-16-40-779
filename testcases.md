@@ -31,12 +31,12 @@
 
 
 # Story 2
-[] Case 1  
+[X] Case 1  
     Given in a parking lot and a wrong parking ticket  
     When fetching a car  
     Then return nothing with error message "Unrecognized parking ticket."  
 
-[] Case 2  
+[X] Case 2  
     Given in a parking lot and a used parking ticket  
     When fetching a car  
     Then return nothing with error message "Unrecognized parking ticket."
