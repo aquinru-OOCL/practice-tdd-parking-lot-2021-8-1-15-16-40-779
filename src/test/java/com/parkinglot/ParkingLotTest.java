@@ -64,7 +64,7 @@ public class ParkingLotTest {
 
 //    Given in a parking lot and a wrong parking ticket
 //    When fetching a car
-//    Then return error message "Unrecognized parking ticket."
+//    Then return nothing error message "Unrecognized parking ticket."
     @Test
     public void should_return_no_car_with_error_message_when_fetch_given_a_parking_lot_and_wrong_parking_ticket() {
         // Given
@@ -80,21 +80,19 @@ public class ParkingLotTest {
 
 //    Given in a parking lot and a used parking ticket
 //    When fetching a car
-//    Then return nothing
+//    Then return nothing with error message "Unrecognized parking ticket."
     @Test
-    public void should_return_no_car_when_fetch_given_a_parking_lot_and_used_parking_ticket() {
+    public void should_return_no_car_with_error_message_when_fetch_given_a_parking_lot_and_used_parking_ticket() {
         // Given
         ParkingLot parkingLot = new ParkingLot();
-        Car car = new Car();
-        ParkingTicket parkingTicket = parkingLot.park(car);
-        Car actualCar = parkingLot.fetch(parkingTicket);
-        Car nullCar = new Car();
+        ParkingTicket parkingTicket = parkingLot.park(new Car());
+        parkingLot.fetch(parkingTicket);
 
         // When
-        nullCar = parkingLot.fetch(parkingTicket);
+        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> parkingLot.fetch(parkingTicket));
 
         // Then
-        assertNull(nullCar);
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
 
 //    Given in a parking lot and position is not available
