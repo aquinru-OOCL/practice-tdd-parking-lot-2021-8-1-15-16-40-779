@@ -123,4 +123,25 @@ public class SuperSmartParkingBoyTest {
 
     }
 
+//    Given a super smart parking boy, who manage two parking lots, both with available position, and a car
+//    When park the car
+//    Then the car will park to the parking lot which has a larger available position rate
+    @Test
+    void should_park_in_parking_lot_which_has_larger_available_position_rate_when_park_given_a_smart_parking_boy_who_manage_two_parking_lots_both_with_available_position() {
+        // Given
+        Car car = new Car();
+        SuperSmartParkingBoy superSuperSmartParkingBoy = new SuperSmartParkingBoy(asList(new ParkingLot(15), new ParkingLot(20)));
+
+        //Park 3 cars in both parking lot
+        for (int i = 0; i < 3; i++) {
+            superSuperSmartParkingBoy.getParkingLotList().get(0).park(new Car());
+            superSuperSmartParkingBoy.getParkingLotList().get(1).park(new Car());
+        }
+
+        // When
+        superSuperSmartParkingBoy.park(car);
+
+        // Then
+        assertEquals(4, superSuperSmartParkingBoy.getParkingLotList().get(1).getCountParkedCars());
+    }
 }
