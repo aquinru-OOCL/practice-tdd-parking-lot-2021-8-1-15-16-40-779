@@ -58,9 +58,8 @@ Given a parking lot with a parked car, a standard parking boy, and a parking tic
 When fetch the car  
 Then return the parked car
 
-[] Case 3
-Given a parking lot with two parked cars, a standard parking boy, and two parking
-tickets  
+[X] Case 3
+Given a parking lot with two parked cars, a standard parking boy, and two parking tickets  
 When fetch the car twice  
 Then return the right car with each ticket
 
