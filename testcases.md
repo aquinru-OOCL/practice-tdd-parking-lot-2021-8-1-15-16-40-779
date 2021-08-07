@@ -84,7 +84,7 @@ Given a standard parking boy, who manage two parking lots, both with available p
 When park the car  
 Then the car will be parked to the first parking lot  
 
-[] Case 2  
+[X] Case 2  
 Given a standard parking boy, who manage two parking lots, first is full and second with
 available position, and a car  
 When park the car  

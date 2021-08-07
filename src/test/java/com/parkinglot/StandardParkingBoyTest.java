@@ -136,4 +136,26 @@ public class StandardParkingBoyTest {
         // Then
         assertEquals(1, standardParkingBoy.getParkingLotList().get(0).getCountParkedCars());
     }
+
+//    Given a standard parking boy, who manage two parking lots, first is full and second with available position, and a car
+//    When park the car
+//    Then the car will be parked to the second parking lot
+    @Test
+    void should_park_in_second_parking_lot_when_park_given_a_standard_parking_boy_who_manage_two_parking_lots_first_is_full_and_second_with_available_position() {
+        // Given
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(asList(new ParkingLot(), new ParkingLot()));
+        for (int i = 0; i < 10; i++) {
+            standardParkingBoy.park(new Car());
+        }
+
+        Car eleventhCar = new Car();
+
+        // When
+        standardParkingBoy.park(eleventhCar);
+
+        // Then
+        assertEquals(10, standardParkingBoy.getParkingLotList().get(0).getCountParkedCars()); //First parking lot should be 10
+        assertEquals(1, standardParkingBoy.getParkingLotList().get(1).getCountParkedCars()); //Second parking lot should be 1
+
+    }
 }

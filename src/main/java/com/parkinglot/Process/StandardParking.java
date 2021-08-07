@@ -10,6 +10,7 @@ import java.util.List;
 public class StandardParking {
     public ParkingTicket park(Car car, List<ParkingLot> parkingLots) {
         return parkingLots.stream()
+                .filter(parkingLot -> !parkingLot.isParkingLotFull())
                 .findFirst()
                 .orElseThrow(NoAvailablePositionException::new)
                 .park(car);
