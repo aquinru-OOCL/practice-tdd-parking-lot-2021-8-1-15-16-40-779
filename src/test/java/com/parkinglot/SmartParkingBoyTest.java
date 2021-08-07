@@ -123,4 +123,29 @@ public class SmartParkingBoyTest {
 
     }
 
+//    Given a smart parking boy, who manage two parking lots, both with available position, and a car
+//    When park the car
+//    Then the car will park to the parking lot which contains more empty positions
+    @Test
+    void should_park_in_parking_lot_with_most_available_positions__when_park_given_a_smart_parking_boy_who_manage_two_parking_lots_both_with_available_position() {
+        // Given
+        Car car = new Car();
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(asList(new ParkingLot(), new ParkingLot()));
+
+        //Park 8 cars in Parking Lot 1
+        for (int i = 0; i < 8; i++) {
+            smartParkingBoy.getParkingLotList().get(0).park(new Car());
+        }
+
+        //Park 3 cars in Parking Lot 2
+        for (int i = 0; i < 3; i++) {
+            smartParkingBoy.getParkingLotList().get(1).park(new Car());
+        }
+
+        // When
+        smartParkingBoy.park(car);
+
+        // Then
+        assertEquals(4, smartParkingBoy.getParkingLotList().get(1).getCountParkedCars());
+    }
 }
