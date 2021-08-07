@@ -82,4 +82,22 @@ public class StandardParkingBoyTest {
         // Then
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
+
+//    Given a parking lot, a standard parking boy, and a used parking ticket
+//    When fetch the car
+//    Then return nothing with error message "Unrecognized parking ticket."
+    @Test
+    void should_return_no_car_with_error_message_when_fetch_given_a_parking_lot_and_a_standard_parking_boy_and_a_used_parking_ticket() {
+        // Given
+        Car car = new Car();
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(Collections.singletonList(new ParkingLot()));
+        ParkingTicket parkingTicket = standardParkingBoy.park(car);
+        standardParkingBoy.fetch(parkingTicket);
+
+        // When
+        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> standardParkingBoy.fetch(parkingTicket));
+
+        // Then
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
+    }
 }
