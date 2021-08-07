@@ -179,7 +179,7 @@
     When park the car  
     Then return nothing with error message "No available position."
 
-[] Case 7  
+[X] Case 7  
     Given a smart parking boy, who manage two parking lots, both with available position, and a car  
     When park the car  
     Then the car will park to the parking lot which has a larger available position rate
