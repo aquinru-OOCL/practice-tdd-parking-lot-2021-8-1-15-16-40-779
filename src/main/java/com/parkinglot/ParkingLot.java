@@ -1,5 +1,7 @@
 package com.parkinglot;
 
+import com.parkinglot.Exceptions.UnrecognizedTicketException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +19,10 @@ public class ParkingLot {
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
+        if (hasInvalidTicket(parkingTicket)) {
+            throw new UnrecognizedTicketException();
+        }
+
         Car car = parkedPositions.get(parkingTicket);
         parkedPositions.remove(parkingTicket);
         return car;
@@ -24,5 +30,9 @@ public class ParkingLot {
 
     public Boolean isParkingLotFull() {
         return parkedPositions.size() >= 10;
+    }
+
+    public Boolean hasInvalidTicket(ParkingTicket parkingTicket) {
+        return !parkedPositions.containsKey(parkingTicket);
     }
 }
