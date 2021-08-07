@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class ParkingLot {
     private final Map<ParkingTicket, Car> parkedPositions = new HashMap<>();
+    private static final int CAPACITY = 10;
 
     public ParkingTicket park(Car car) {
         if (isParkingLotFull()){
@@ -29,7 +30,7 @@ public class ParkingLot {
     }
 
     public Boolean isParkingLotFull() {
-        return getCountParkedCars() >= 10;
+        return getCountParkedCars() >= CAPACITY;
     }
 
     public Boolean hasInvalidTicket(ParkingTicket parkingTicket) {
@@ -38,5 +39,9 @@ public class ParkingLot {
 
     public int getCountParkedCars() {
         return parkedPositions.size();
+    }
+
+    public int getAvailableCapacity() {
+        return CAPACITY - getCountParkedCars();
     }
 }
