@@ -48,7 +48,7 @@
 
 
 # Story 3
-[] Case 1
+[X] Case 1
 Given a parking lot, a standard parking boy, and a car  
 When park the car  
 Then return a parking ticket
